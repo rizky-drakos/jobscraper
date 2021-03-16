@@ -9,7 +9,7 @@ from datetime import datetime
 class itviecspider(scrapy.Spider):
     name = "itviec"
 
-    start_urls = ["https://itviec.com/it-jobs"]
+    start_urls = ["https://itviec.com/it-jobs/?page=128"]
 
     def parse(self, response):
         for link in response.css("div.first-group > div.job::attr(data-search--job-selection-job-url)").getall():
@@ -18,7 +18,7 @@ class itviecspider(scrapy.Spider):
             logging.critical(f"Scraping {link}")
             yield response.follow(link, self.parseInnerPage)
 
-        next_page = response.css("div.search-page__jobs-pagination > ul > li:nth-child(5) > a::attr(href)").get()
+        next_page = response.css("div.search-page__jobs-pagination > ul > li:last-child > a::attr(href)").get()
         if next_page:
             yield response.follow(next_page, self.parse)
 
