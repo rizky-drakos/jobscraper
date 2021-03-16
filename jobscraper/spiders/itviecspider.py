@@ -9,7 +9,7 @@ from datetime import datetime
 class itviecspider(scrapy.Spider):
     name = "itviec"
 
-    start_urls = ["https://itviec.com/it-jobs/?page=128"]
+    start_urls = ["https://itviec.com/it-jobs"]
 
     def parse(self, response):
         for link in response.css("div.first-group > div.job::attr(data-search--job-selection-job-url)").getall():
