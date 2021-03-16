@@ -16,7 +16,7 @@ class itviecspider(scrapy.Spider):
             sleeping_interval = random.choice([2, 3, 5])
             time.sleep(sleeping_interval)
             logging.critical(f"Scraping {link}")
-            yield response.follow(link+"/content", self.parseInnerPage)
+            yield response.follow(link, self.parseInnerPage)
 
         next_page = response.css("div.search-page__jobs-pagination > ul > li:nth-child(5) > a::attr(href)").get()
         if next_page:
