@@ -17,7 +17,11 @@ class itviecspider(scrapy.Spider):
             time.sleep(sleeping_interval)
             logging.critical(f"Scraping {link}")
             yield response.follow(link, self.parseInnerPage)
-        
+
+        next_page = response.css("div.search-page__jobs-pagination > ul > li:nth-child(5) > a::attr(href)").get()
+        if next_page:
+            yield response.follow(next_page, self.parse)
+
         # For debugging
         # logging.info("MEE it-jobs/ky-su-phat-trien-ung-dung-smartphone-i-enter-asia-5226/content")
         # yield response.follow("it-jobs/ky-su-phat-trien-ung-dung-smartphone-i-enter-asia-5226/content", self.parseInnerPage)
