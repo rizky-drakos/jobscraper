@@ -38,7 +38,7 @@ class itviecspider(scrapy.Spider):
             "three_reasons": response.css("div > div.job-details__top-reason-to-join-us > ul > li::text").getall(),
             "description": response.css("body > div.search-page__job-details > div > div:nth-child(7) *::text, div:nth-child(8) *::text").getall(),
             "required_skills": response.css("div.search-page__job-details > div > div:nth-child(9) *::text, div:nth-child(10) *::text").getall(),
-            "benefits": response.css("div.search-page__job-details > div > div:nth-child(11) *::text").getall(),
+            "benefits": response.css("div.search-page__job-details > div > div:nth-child(11) *::text, div:nth-child(12) *::text").getall(),
             "company_slogan": response.css("div.search-page-employer-overview__header > div.search-page-employer-overview__headline > span::text").get(),
             "company_type": response.css("div.search-page-employer-overview__content > div.search-page-employer-overview__characteristics > div:nth-child(1) > div::text").get(),
             "company_population": response.css("div.search-page-employer-overview__content > div.search-page-employer-overview__characteristics > div:nth-child(2) > div::text").get(),
